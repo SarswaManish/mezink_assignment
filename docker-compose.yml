@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    container_name: database
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DATABASE: student
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    networks:
+      - fullstack
+    volumes:
+      - pg_data:/var/lib/postgresql/data/pgdata
+      - ./init.d/postgres:/docker-entrypoint-initdb.d
+  app:
+    container_name: backend-container
+    restart: always
+    image: temp
+    environment:
+      PG_PASSWORD: "root"
+      PG_USER: "postgres"
+      PG_DB: "student"
+      PG_HOST: "postgres"
+    ports:
+      - "8000:8001"
+    networks:
+      - fullstack
+    depends_on:
+      - postgres
+
+volumes:
+  pg_data:
+
+networks:
+  fullstack:
+    driver: bridge
+
