@@ -16,6 +16,7 @@ func main() {
 	engine := gin.New()
 	server := common.MustCreateServer(config)
 	AddKnockKnock(engine, server)
+	AddPrivate(engine.Group("/private/v1"), server)
 	engine.Use(CORSMiddleware(server))
 
 	s := &http.Server{

@@ -13,6 +13,6 @@ func AddKnockKnock(engine *gin.Engine, serv *server.Server) {
 func AddPrivate(private *gin.RouterGroup, serv *server.Server) {
 	private.Use(BasicAuthRequired(serv))
 	{
-
+		private.GET("/fetch/records", wrapHandler(serv.FetchRecordsView))
 	}
 }

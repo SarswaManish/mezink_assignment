@@ -2,15 +2,17 @@ package server
 
 import (
 	"awesomeProject/configs"
+	"awesomeProject/internal"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 type ServerResources struct {
-	DB           *gorm.DB
-	Cors         configs.Cors
-	InternalAuth struct {
+	DB            *gorm.DB
+	Cors          configs.Cors
+	RecordHandler internal.RecordHandler
+	InternalAuth  struct {
 		Username string
 		Password string
 	}

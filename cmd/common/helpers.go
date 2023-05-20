@@ -4,6 +4,7 @@ import (
 	"awesomeProject/configs"
 	"awesomeProject/internal/database/postgres"
 	"awesomeProject/internal/server"
+	"awesomeProject/internal/student"
 	"fmt"
 
 	"gorm.io/gorm"
@@ -17,6 +18,7 @@ func MustCreateServer(config Config) *server.Server {
 	resources.Cors = configs.Cors(config.Cors)
 	resources.InternalAuth.Username = config.InternalAuth.Username
 	resources.InternalAuth.Password = config.InternalAuth.Password
+	resources.RecordHandler = student.New(resources.DB)
 	return server.NewServer(resources)
 
 }
