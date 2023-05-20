@@ -20,6 +20,7 @@ func (s *Server) FetchRecordsView(c *gin.Context) {
 			"msg":   "Missing Params or Date format is Not Correct",
 			"error": err,
 		})
+
 		return
 	}
 	resp, err := s.RecordHandler.FetchRecords(ctx, input)

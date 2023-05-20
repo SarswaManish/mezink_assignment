@@ -15,7 +15,7 @@ services:
       - fullstack
     volumes:
       - pg_data:/var/lib/postgresql/data/pgdata
-      - ./init.d/postgres:/docker-entrypoint-initdb.d
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
   app:
     container_name: backend-container
     restart: always
